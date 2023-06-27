@@ -1,12 +1,18 @@
 import React, {useState, useRef} from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { 
+StyleSheet,
+Text,
+TouchableOpacity,
+View
+} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import { LinearGradient } from 'expo-linear-gradient';
+import {Contador} from "./Contador";
 
 
 export default function App() {
-        const [segundos, setarSegundos] = useState(0);
+        const [segundos, setarSegundos] = useState(1);
         const [minutos, setarMinutos] = useState(0);
         const [estado, setarEstado] = useState('selecionar');
         const [alarme, setarAlarme] = useState([
@@ -14,27 +20,23 @@ export default function App() {
             id: 1,
             selecionado: true,
             som: 'alarme 1',
-            file: '',
+            file: { uri: 'https://firebasestorage.googleapis.com/v0/b/app-music-24262.appspot.com/o/alarme1.mp3?alt=media&token=bc5d4542-b199-47a6-b51f-4a9164d9d2e0' }
           },
-
           {
             id: 2,
             selecionado: false,
             som: 'alarme 2',
-            file: '',
+            file: { uri: ('https://firebasestorage.googleapis.com/v0/b/app-music-24262.appspot.com/o/alarme2.mp3?alt=media&token=06abc9c8-c60a-478e-bc09-54cddbed8fca')}
+          },
+
+          {
+            id: 3,
+            selecionado: false,
+            som: 'alarme 3',
+            file: { uri: ('https://firebasestorage.googleapis.com/v0/b/app-music-24262.appspot.com/o/alarme3.mp3?alt=media&token=72bf2158-2b26-4b65-9744-b561966e1a95')}
           }
         ]);
-        const [selectedLanguage, setSelectedLanguage] = useState();
-
-        const pickerRef = useRef();
-
-        function open() {
-          pickerRef.current.focus();
-        }
-
-        function close() {
-          pickerRef.current.blur();
-        }
+        
 
         var numeros = [];
         for (var i = 1; i < 60; i++) {
@@ -92,7 +94,7 @@ export default function App() {
                     style={styles.picker}
                     >
                         <Picker.Item label='0' value='0' />
-            
+                      
                     {
                       numeros.map((val) => {
                         return(
@@ -194,9 +196,24 @@ export default function App() {
             
           } else if(estado == 'iniciar'){
                 return(
-                  <View>
-                    <Text>Começou</Text>
-                  </View>
+                  
+                       <LinearGradient
+                    // Background Linear Gradient
+                    colors={['rgba(0, 84, 163,0.4)', 'rgba(0, 84, 163,0.9)']}
+                    style={styles.background}
+                  >
+            
+                    <Contador
+                    minutos={minutos}
+                    segundos={segundos}
+                    setarEstado={setarEstado}
+                    setarMinutos={setarMinutos}
+                    setarSegundos={setarSegundos}
+                    alarmes={alarme}
+                    />
+
+                    </LinearGradient>
+                  
                 )
           }
 }
