@@ -20,21 +20,22 @@ export default function App() {
             id: 1,
             selecionado: true,
             som: 'alarme 1',
-            file: { uri: 'https://firebasestorage.googleapis.com/v0/b/app-music-24262.appspot.com/o/alarme1.mp3?alt=media&token=bc5d4542-b199-47a6-b51f-4a9164d9d2e0' }
+            file: require('./assets/alarme1.mp3')
           },
           {
             id: 2,
             selecionado: false,
             som: 'alarme 2',
-            file: { uri: ('https://firebasestorage.googleapis.com/v0/b/app-music-24262.appspot.com/o/alarme2.mp3?alt=media&token=06abc9c8-c60a-478e-bc09-54cddbed8fca')}
+            file: require('./assets/alarme2.mp3')
           },
 
           {
             id: 3,
             selecionado: false,
             som: 'alarme 3',
-            file: { uri: ('https://firebasestorage.googleapis.com/v0/b/app-music-24262.appspot.com/o/alarme3.mp3?alt=media&token=72bf2158-2b26-4b65-9744-b561966e1a95')}
-          }
+            file: require('./assets/alarme3.mp3')
+          },
+
         ]);
         
 
